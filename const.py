@@ -1,9 +1,10 @@
 """Constants for the Chicken Farm integration."""
+
 from homeassistant.const import Platform
 
 # Domain and platforms
 DOMAIN = "chicken"
-PLATFORMS = [Platform.SENSOR, Platform.NUMBER]  # Removed Platform.SCRIPT
+PLATFORMS = [Platform.SENSOR, Platform.NUMBER]  #  Keep both. You'll have sensors AND numbers.
 
 # Configuration keys
 CONF_FARM_NAME = "farm_name"
@@ -20,8 +21,8 @@ UNIT_KG = "kg"
 UNIT_EURO = "€"
 
 # Entity IDs
-ENTITY_EGGS_IN_STORAGE = "sensor.eggs_in_storage"
-ENTITY_TOTAL_COSTS = "sensor.total_costs"
+# ENTITY_EGGS_IN_STORAGE = "sensor.eggs_in_storage" #  Remove this.  Not the right way to do it.
+# ENTITY_TOTAL_COSTS = "sensor.total_costs" # Remove this, this entity should be a sensor
 
 # Error Messages
 ERROR_INVALID_FARM_SIZE = "Invalid farm size. Choose from Small, Medium, or Large."
