@@ -1,4 +1,5 @@
 """Config flow for Chicken Farm integration."""
+
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.core import callback
@@ -16,14 +17,15 @@ from .const import (
 VALID_FARM_SIZES = ["Small", "Medium", "Large"]
 VALID_CHICKEN_TYPES = ["Rhode Island Red", "Plymouth Rock", "Sussex"]
 
+
 class ChickenConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Chicken Farm."""
+
     VERSION = 1
 
     async def async_step_user(self, user_input=None):
         """Handle the initial step."""
         errors = {}
-
         if user_input is not None:
             farm_size = user_input[CONF_FARM_SIZE]
             chicken_type = user_input[CONF_CHICKEN_TYPE]
@@ -41,11 +43,17 @@ class ChickenConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         return self.async_show_form(
             step_id="user",
-            data_schema=vol.Schema({
-                vol.Required(CONF_FARM_NAME, default=DEFAULT_FARM_NAME): str,
-                vol.Required(CONF_FARM_SIZE, default=DEFAULT_FARM_SIZE): vol.In(VALID_FARM_SIZES),
-                vol.Required(CONF_CHICKEN_TYPE, default=DEFAULT_CHICKEN_TYPE): vol.In(VALID_CHICKEN_TYPES),
-            }),
+            data_schema=vol.Schema(
+                {
+                    vol.Required(CONF_FARM_NAME, default=DEFAULT_FARM_NAME): str,
+                    vol.Required(CONF_FARM_SIZE, default=DEFAULT_FARM_SIZE): vol.In(
+                        VALID_FARM_SIZES
+                    ),
+                    vol.Required(CONF_CHICKEN_TYPE, default=DEFAULT_CHICKEN_TYPE): vol.In(
+                        VALID_CHICKEN_TYPES
+                    ),
+                }
+            ),
             errors=errors,
         )
 
@@ -62,6 +70,7 @@ class ChickenConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Get the options flow for this handler."""
         return ChickenOptionsFlow(config_entry)
 
+
 class ChickenOptionsFlow(config_entries.OptionsFlow):
     """Handle options flow for Chicken Farm integration."""
 
@@ -76,12 +85,26 @@ class ChickenOptionsFlow(config_entries.OptionsFlow):
 
         return self.async_show_form(
             step_id="init",
-            data_schema=vol.Schema({
-                vol.Required(CONF_FARM_NAME, 
-                    default=self.config_entry.data.get(CONF_FARM_NAME, DEFAULT_FARM_NAME)): str,
-                vol.Required(CONF_FARM_SIZE, 
-                    default=self.config_entry.data.get(CONF_FARM_SIZE, DEFAULT_FARM_SIZE)): vol.In(VALID_FARM_SIZES),
-                vol.Required(CONF_CHICKEN_TYPE, 
-                    default=self.config_entry.data.get(CONF_CHICKEN_TYPE, DEFAULT_CHICKEN_TYPE)): vol.In(VALID_CHICKEN_TYPES),
-            }),
+            data_schema=vol.Schema(
+                {
+                    vol.Required(
+                        CONF_FARM_NAME,
+                        default=self.config_entry.data.get(
+                            CONF_FARM_NAME, DEFAULT_FARM_NAME
+                        ),
+                    ): str,
+                    vol.Required(
+                        CONF_FARM_SIZE,
+                        default=self.config_entry.data.get(
+                            CONF_FARM_SIZE, DEFAULT_FARM_SIZE
+                        ),
+                    ): vol.In(VALID_FARM_SIZES),
+                    vol.Required(
+                        CONF_CHICKEN_TYPE,
+                        default=self.config_entry.data.get(
+                            CONF_CHICKEN_TYPE, DEFAULT_CHICKEN_TYPE
+                        ),
+                    ): vol.In(VALID_CHICKEN_TYPES),
+                }
+            ),
         )
