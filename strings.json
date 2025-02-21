@@ -1,0 +1,13 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Chicken Farm",
+                "description": "Set up your chicken farm management system",
+                "data": {
+                    "farm_name": "Farm Name"
+                }
+            }
+        }
+    }
+}

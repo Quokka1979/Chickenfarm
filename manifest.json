@@ -1,0 +1,12 @@
+{
+    "domain": "chicken",
+    "name": "Chicken Farm Management",
+    "config_flow": true,
+    "documentation": "https://github.com/quokka1979/chicken",
+    "issue_tracker": "https://github.com/quokka1979/chicken/issues",
+    "dependencies": ["script"],
+    "codeowners": ["@Quokka"],
+    "requirements": [],
+    "version": "1.0.0",
+    "iot_class": "calculated"
+}
