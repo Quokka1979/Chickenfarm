@@ -1,0 +1,18 @@
+{
+    "config": {
+      "step": {
+        "user": {
+          "title": "Configure Chicken Farm",
+          "data": {
+            "farm_name": "Farm Name",
+            "farm_size": "Farm Size",
+            "chicken_type": "Chicken Type"
+          }
+        }
+      },
+      "error": {
+        "invalid_farm_size": "Invalid farm size. Choose from Small, Medium, or Large.",
+        "invalid_chicken_type": "Invalid chicken type. Choose from Rhode Island Red, Plymouth Rock, or Sussex."
+      }
+    }
+  }
