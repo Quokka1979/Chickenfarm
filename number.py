@@ -1,12 +1,11 @@
 """Number platform for Chicken Farm."""
-from __future__ import annotations
 
+from __future__ import annotations
 from homeassistant.components.number import NumberEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CURRENCY_EURO
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-
 from .const import DOMAIN
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
@@ -69,7 +68,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
             100,
             1
         ),
-        
         # Usage tracking
         ChickenNumber(
             "eggs_used",
@@ -104,7 +102,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
             0.01,
             CURRENCY_EURO
         ),
-        
         # Cost inputs
         ChickenNumber(
             "pellets_kg",
@@ -159,7 +156,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
             CURRENCY_EURO
         )
     ]
-    
     async_add_entities(numbers, True)
 
 class ChickenNumber(NumberEntity):
@@ -183,7 +179,8 @@ class ChickenNumber(NumberEntity):
         self._max = max_value
         self._step = step
         self._unit = unit
-        self._value = min_value
+        self._value = min_value  # Initialize with the minimum value
+        self._attr_native_unit_of_measurement = unit # Set unit of measurement
 
     @property
     def unique_id(self) -> str:
@@ -202,17 +199,17 @@ class ChickenNumber(NumberEntity):
 
     @property
     def native_min_value(self) -> float:
-        """Return minimum value."""
+        """Return the minimum value."""
         return self._min
 
     @property
     def native_max_value(self) -> float:
-        """Return maximum value."""
+        """Return the maximum value."""
         return self._max
 
     @property
     def native_step(self) -> float:
-        """Return step value."""
+        """Return the increment/decrement step."""
         return self._step
 
     @property
@@ -223,9 +220,10 @@ class ChickenNumber(NumberEntity):
     @property
     def native_unit_of_measurement(self) -> str | None:
         """Return the unit of measurement."""
-        return self._unit
+        return self._attr_native_unit_of_measurement
 
-    async def async_set_native_value(self, value: float) -> None:
-        """Update the current value."""
+    async def async_set_value(self, value: float) -> None:
+        """Set a new value."""
         self._value = value
         self.async_write_ha_state()
+
