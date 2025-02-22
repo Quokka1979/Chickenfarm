@@ -154,7 +154,82 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
             1000,
             0.01,
             CURRENCY_EURO
-        )
+        ),
+        ChickenNumber(
+            "number_of_hens",
+            "Number of Hens",
+            "mdi:gender-female",
+            0,
+            1000,
+            1
+        ),
+        ChickenNumber(
+            "number_of_roosters",
+            "Number of Roosters",
+            "mdi:gender-male",
+            0,
+            100,
+            1
+        ),
+        ChickenNumber(
+            "chicken_died",
+            "Chickens Died",
+            "mdi:cross",
+            0,
+            1000,
+            1
+        ),
+        ChickenNumber(
+            "chicken_butchered",
+            "Chickens Butchered",
+            "mdi:knife",
+            0,
+            1000,
+            1
+        ),
+        # Hatchery tracking
+        ChickenNumber(
+            "eggs_in_hatchery",
+            "Eggs in Hatchery",
+            "mdi:egg-easter",
+            0,
+            1000,
+            1
+        ),
+        ChickenNumber(
+            "hatched_eggs",
+            "Hatched Eggs",
+            "mdi:egg-easter",
+            0,
+            1000,
+            1
+        ),
+        ChickenNumber(
+            "died_eggs",
+            "Died Eggs",
+            "mdi:egg-off",
+            0,
+            1000,
+            1
+        ),
+        # Purchase tracking
+        ChickenNumber(
+            "purchase_weight",
+            "Purchase Weight",
+            "mdi:weight-kilogram",
+            0,
+            1000,
+            0.1
+        ),
+        ChickenNumber(
+            "purchase_cost",
+            "Purchase Cost",
+            "mdi:cash",
+            0,
+            1000,
+            0.01,
+            CURRENCY_EURO
+        )        
     ]
     async_add_entities(numbers, True)
 
